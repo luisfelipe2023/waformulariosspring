@@ -11,17 +11,20 @@
         AUTENTICACIÓN
     </div>
     <div class="card-body">
-        <form>
+        <form th:action="@{/login}" method="post" th:object="${loginModel}">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="txtusuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="txtusuario" aria-describedby="emailHelp" th:field="*{usuario}">
 
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="txtpassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="txtpassword" th:field="*{password}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <div th:if="${mostrarMensaje}" class="alert alert-danger" role="alert">
+                <span th:text="${mensaje} ?:''"></span>
+            </div>
         </form>
     </div>
 </div>
