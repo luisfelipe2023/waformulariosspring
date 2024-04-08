@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<head th:replace="layout::head">
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet">
+
 </head>
 <body>
+<nav th:replace="layout::menu"></nav>
 <div class="card">
     <div class="card-header text-bg-success text-center ">
         CALCULADORA IMC
@@ -13,15 +14,17 @@
     <div class="card-body">
         <form th:action="@{/imc}" method="post" th:object="${imcModel}">
             <div class="mb-3">
-                <label for="txtTalla" class="form-label">Ingrese su Peso :</label>
+                <label for="txtTalla" class="form-label">Ingrese su Talla :</label>
                 <input type="text" class="form-control" id="txtTalla" aria-describedby="emailHelp" th:field="*{talla}">
 
             </div>
             <div class="mb-3">
-                <label for="txtPeso" class="form-label">Ingrese su Talla:</label>
+                <label for="txtPeso" class="form-label">Ingrese su Peso:</label>
                 <input type="text" class="form-control" id="txtPeso" th:field="*{peso}" placeholder="000">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+            <br>
             <div th:if="${mostrarMensaje}" class="alert alert-danger" role="alert" aria-placeholder="kg">
                 <span th:text="${resultado} ?:''"></span>
             </div>
